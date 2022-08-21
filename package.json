@@ -1,0 +1,22 @@
+{
+  "name": "emma",
+  "version": "1.0.0",
+  "description": "Assistant!",
+  "repository": "https://github.com/ritikdrona/emma.git",
+  "author": "Ritik Drona <ritik1218@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1"
+  }
+}
