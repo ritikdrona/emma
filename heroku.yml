@@ -1,3 +1,3 @@
 build:
-  docker:
-    api: ./apps/api/Dockerfile
+    docker:
+        web: ./apps/api/Dockerfile
