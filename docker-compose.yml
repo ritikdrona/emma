@@ -1,18 +1,18 @@
 version: '3.9'
 services:
-    api:
-        image: node:18-slim
-        working_dir: /api
-        command: yarn dev
-        ports:
-            - '4000:4000'
-        volumes:
-            - ./apps/api:/api
-    web:
-        image: node:18-slim
-        working_dir: /web
-        command: yarn dev
-        ports:
-            - '3000:3000'
-        volumes:
-            - ./apps/web:/web
+  api:
+    image: node:18-slim
+    working_dir: /api
+    command: yarn dev
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./apps/api:/api
+  web:
+    image: node:18-slim
+    working_dir: /web
+    command: yarn dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./apps/web:/web
