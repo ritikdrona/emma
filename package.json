@@ -6,10 +6,6 @@
   "author": "Ritik Drona <ritik1218@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "prepare": "husky install",
     "lint": "prettier --check .",

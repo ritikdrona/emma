@@ -1,18 +1,30 @@
 version: '3.9'
 services:
   api:
-    image: node:18-slim
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile.dev
     working_dir: /api
+    # command: tail -f
     command: yarn dev
     ports:
       - '4000:4000'
     volumes:
+      - /api/node_modules
       - ./apps/api:/api
+    environment:
+      - CHOKIDAR_USEPOLLING=true
   web:
-    image: node:18-slim
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile.dev
     working_dir: /web
+    # command: tail -f
     command: yarn dev
     ports:
       - '3000:3000'
     volumes:
+      - /web/node_modules
       - ./apps/web:/web
+    environment:
+      - CHOKIDAR_USEPOLLING=true

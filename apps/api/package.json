@@ -4,7 +4,6 @@
   "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
-    "predev": "yarn install",
     "dev": "nodemon ./src/server.ts",
     "build": "tsc"
   },
