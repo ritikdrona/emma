@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { createNode } from './router/createNode'
-import { getNodesByParentId } from './router/getNodesByParentId'
+import { createNode } from './routes/createNode'
+import { getNodesByParentId } from './routes/getNodesByParentId'
 
 const cruxRouter = Router()
 

@@ -1,4 +1,4 @@
-type RequestOptions = {
+export type RequestOptions = {
     method?: string
     body?: any
     headers?: { string: string }
@@ -14,6 +14,6 @@ export const useFetch = async (
         headers
     })
 
-    response = await response.json()
-    return response
+    let data = await response.json()
+    return data
 }

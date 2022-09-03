@@ -8,14 +8,15 @@ export const useSessionStorage = (defaultValue: any, key: string) => {
         initialValue = defaultValue
         sessionStorage.setItem(key, JSON.stringify(defaultValue))
     } else {
-        initialValue = JSON.parse(sessionStorage.getItem(key) as string)
+        // initialValue = JSON.parse(sessionStorage.getItem(key) as string)
+        initialValue = sessionStorage.getItem(key) as string
     }
 
-    const [state, setState] = useState<string>(initialValue)
+    const [state, setState] = useState<string | null>(initialValue)
 
     useEffect(() => {
-        sessionStorage.setItem(key, defaultValue)
+        sessionStorage.setItem(key, state as string)
     }, [state])
 
-    return [state, setState]
+    return { state, setState }
 }
