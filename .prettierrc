@@ -3,6 +3,7 @@
   "useTabs": false,
   "singleQuote": true,
   "semi": false,
+  "trailingComma": "none",
   "overrides": [
     {
       "files": [".prettierrc", "*.json", "**.yml"],

@@ -24,7 +24,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         token,
         isLoggedIn,
         login,
-        logout,
+        logout
     }
 
     return (
@@ -36,5 +36,5 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
 export default {
     AuthContext,
-    AuthContextProvider,
+    AuthContextProvider
 }

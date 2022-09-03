@@ -11,7 +11,7 @@ export const useFetch = async (
     let response = await fetch(url, {
         method,
         body: JSON.stringify(body),
-        headers,
+        headers
     })
 
     response = await response.json()

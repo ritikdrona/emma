@@ -1,5 +1,5 @@
 const constants = {
-    BASE_URL: '/emma/',
+    BASE_URL: '/emma/'
 }
 
 export default constants

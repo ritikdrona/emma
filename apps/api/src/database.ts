@@ -3,7 +3,11 @@ import mongoose from 'mongoose'
 
 dotenv.config()
 
-const databaseUrl: string = process.env.MONGODB_URL as string
-mongoose.connect(databaseUrl, () => console.log('DB Connected Successfully!'))
-
-export default mongoose
+const databaseUrl: string = process.env.MONGO_URL as string
+mongoose.connect(databaseUrl, (error) => {
+    if (error) {
+        console.log(error.message)
+    } else {
+        console.log('DB Connected Successfully!')
+    }
+})
