@@ -16,10 +16,7 @@ const CurrentNodePath = ({
                         <i className="fa-solid fa-arrows-rotate"></i>
                     </div>
                     <div onClick={goToParentNode} className="px-2">
-                        <i className="fa-solid fa-arrows-rotate"></i>
-                        <i className="fa-solid fa-folder-arrow-up"></i>
-                        <i className="fa-regular fa-folder-arrow-up"></i>
-                        <i className="fa-sharp fa-solid fa-folder-arrow-up"></i>
+                        <i className="fa-solid fa-arrow-up"></i>
                     </div>
                 </div>
             </div>

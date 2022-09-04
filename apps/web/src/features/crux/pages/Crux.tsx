@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSessionStorage } from '../../../lib/hooks/useSessionStorage'
+import { useSessionStorageJSON } from '../../../lib/hooks/useSessionStorageJSON'
 import { useGetNodesByParentId } from '../api'
 import CurrentNodePath from '../components/CurrentNodePath'
 import NodeDetail from '../components/NodeDetail'
@@ -9,11 +10,17 @@ const Crux = () => {
     const { state: currentParentId, setState: setCurrentParentId } =
         useSessionStorage(null, 'currentParentId')
     const [nodes, setNodes] = useState<Node[]>([])
-    const [pathNodes, setPathNodes] = useState<Node[]>([])
+    const { state: pathNodes, setState: setPathNodes } = useSessionStorageJSON<
+        Node[]
+    >([], 'pathNodes')
 
     useEffect(() => {
         getNodesByCurrentParentId()
     }, [currentParentId])
+
+    // useEffect(() => {
+    //     console.log('path nodes updated', pathNodes)
+    // }, [pathNodes])
 
     const getNodesByCurrentParentId = async () => {
         let response = await useGetNodesByParentId(currentParentId)
@@ -22,24 +29,19 @@ const Crux = () => {
 
     const onNodeClick = (node: Node) => {
         setCurrentParentId(node._id)
-        console.log(node)
-        console.log(pathNodes)
-        setPathNodes((pathNodes) => [...pathNodes, node])
+        setPathNodes((currentPathNodes) => [...currentPathNodes, node])
     }
 
     const goToParentNode = () => {
-        console.log('cedsceds')
-        console.log(pathNodes)
-        if (pathNodes.length > 0) {
-            console.log('in loop')
+        if (pathNodes.length == 1) {
+            // current parent is root
+            reset()
+        } else if (pathNodes.length > 1) {
             let parentNode: Node = pathNodes.at(pathNodes.length - 2) as Node
-            console.log(parentNode)
             setCurrentParentId(parentNode._id)
-            setPathNodes((pathNodes) => {
-                pathNodes.pop()
-                console.log('new path nodes', pathNodes)
-                return pathNodes
-            })
+            setPathNodes((currentPathNodes) =>
+                currentPathNodes.slice(0, currentPathNodes.length - 1)
+            )
         }
     }
 

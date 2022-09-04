@@ -3,7 +3,7 @@
 ## Frontend
 
 1. Some Issue with overall layout of Crux page
-2. goToLastParent not working
+2. goToLastParent not working - fixed
 
 ## Backend
 
