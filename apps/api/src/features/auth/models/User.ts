@@ -1,10 +1,16 @@
-import { model, Schema } from 'mongoose'
+import { Document, model, Schema } from 'mongoose'
 
-const userSchema = new Schema({
+export interface UserInterface extends Document {
+    name: String
+    username: String
+    password: String
+}
+
+const userSchema: Schema = new Schema({
     name: String,
     username: String,
     password: String
 })
 
-const User = model('User', userSchema)
+const User = model<UserInterface>('User', userSchema)
 export default User

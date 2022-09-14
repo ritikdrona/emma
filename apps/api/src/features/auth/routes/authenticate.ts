@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { generateJWT } from '../../../lib/jwt'
 import User from '../models/User'
 import { viewUser } from '../utils'
 
@@ -22,8 +23,11 @@ export const authenticate = async (req: Request, res: Response) => {
         return
     }
 
+    const token = generateJWT(user)
+
     res.status(200).send({
         message: 'Authenticated Successfully!',
-        user: viewUser(user)
+        user: viewUser(user),
+        token: token
     })
 }
