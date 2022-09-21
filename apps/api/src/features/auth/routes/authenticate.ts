@@ -8,24 +8,25 @@ export const authenticate = async (req: Request, res: Response) => {
 
     const user = await User.findOne({ username: username })
     if (user === null) {
-        res.status(404).send({
+        return res.status(404).send({
+            success: false,
             message: 'Username or password incorrect.',
             user: null
         })
-        return
     }
 
     if (user?.password !== password) {
-        res.status(200).send({
+        return res.status(200).send({
+            success: false,
             message: 'Username or password incorrect.',
             user: null
         })
-        return
     }
 
     const token = generateJWT(user)
 
-    res.status(200).send({
+    return res.status(200).send({
+        success: true,
         message: 'Authenticated Successfully!',
         user: viewUser(user),
         token: token

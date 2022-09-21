@@ -8,7 +8,7 @@ export const validateUser = (
     next: NextFunction
 ) => {
     const header = req.headers['authorization'] as string
-    if (header === null || !header.includes(' ')) {
+    if (!header || !header.includes(' ')) {
         return res.status(401).json({
             message: 'Unauthorized'
         })

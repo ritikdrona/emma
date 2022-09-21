@@ -4,7 +4,7 @@ import { viewUser } from '../utils'
 
 export const createUser = async (req: Request, res: Response) => {
     const user = await User.create(req.body)
-    res.status(201).send({
+    return res.status(201).send({
         message: 'User created successfully!',
         user: viewUser(user)
     })

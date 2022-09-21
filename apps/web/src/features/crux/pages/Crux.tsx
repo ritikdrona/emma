@@ -24,7 +24,7 @@ const Crux = () => {
 
     const getNodesByCurrentParentId = async () => {
         let response = await useGetNodesByParentId(currentParentId)
-        setNodes(response)
+        if (response) setNodes(response)
     }
 
     const onNodeClick = (node: Node) => {
@@ -53,7 +53,7 @@ const Crux = () => {
     return (
         <div>
             <CurrentNodePath goToParentNode={goToParentNode} reset={reset} />
-            <div className="container px-20">
+            <div className="container px-20 pt-20">
                 <ul>
                     {nodes.map((node) => {
                         return (

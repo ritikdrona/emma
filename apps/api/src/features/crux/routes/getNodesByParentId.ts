@@ -9,5 +9,5 @@ export const getNodesByParentId = async (req: Request, res: Response) => {
         parentId: parentId
     })
 
-    res.send({ message: 'Fetched nodes', nodes: nodes })
+    return res.send({ message: 'Fetched nodes', nodes: nodes })
 }

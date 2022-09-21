@@ -1,8 +1,8 @@
-import constants from '../../constants'
+import config from '../../config'
 import { useGet } from '../../lib/hooks/useGet'
 import { usePost } from '../../lib/hooks/usePost'
 
-const API_URL = constants.API_URL + 'crux/'
+const API_URL = config.API_URL + 'crux/'
 
 export const useGetNodesByParentId = async (parentId: string | null) => {
     let response = await useGet(API_URL + 'nodes/' + parentId)

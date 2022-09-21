@@ -1,13 +1,35 @@
 import { createContext, ReactNode, useState } from 'react'
+import { useSessionStorage } from '../../../lib/hooks/useSessionStorage'
+import { useSessionStorageJSON } from '../../../lib/hooks/useSessionStorageJSON'
+import { User } from '../types/User'
 
-export const AuthContext = createContext<any>({})
+interface AuthContextType {
+    user: User | null
+    token: string | null
+    isLoggedIn: boolean
+    login: (user: User, token: string) => void
+    logout: () => void
+}
+
+export const AuthContext = createContext<AuthContextType>({
+    user: null,
+    token: null,
+    isLoggedIn: false,
+    login: (user: User, token: string) => {},
+    logout: () => {}
+})
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
-    const [user, setUser] = useState<{} | null>(null)
-    const [token, setToken] = useState<string | null>(null)
+    const { state: isLoggedIn, setState: setIsLoggedIn } =
+        useSessionStorageJSON<boolean>(false, 'isLoggedIn')
+    const { state: user, setState: setUser } =
+        useSessionStorageJSON<User | null>(null, 'user')
+    const { state: token, setState: setToken } = useSessionStorage(
+        null,
+        'token'
+    )
 
-    const login = (user: {}, token: string) => {
+    const login = (user: User, token: string) => {
         setIsLoggedIn(true)
         setUser(user)
         setToken(token)
