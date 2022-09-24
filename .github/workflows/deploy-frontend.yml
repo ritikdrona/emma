@@ -1,0 +1,39 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_deply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: cd apps/web
+
+      - run: yarn install --frozen-lockfile && yarn run build:prod
+
+      - run: cp -r ./dist ~
+
+      - run: cd ../../
+
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+
+      - run: rm -rf *
+
+      - run: cp -r ~/dist/* .
+
+      - run: cp ./index.html ./404.html
+
+      - run: echo "# Deployment Branch" > README.md
+
+      - run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          git add .
+          git commit -m "[automated] Deplyed against ${{github.sha}}"
+          git push
