@@ -19,8 +19,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
         <AuthContextProvider>
             {/* <BrowserRouter basename={config.BASE_URL}> */}
-            <RouterProvider router={router} />
+            {/* <App /> */}
             {/* </BrowserRouter> */}
+            <RouterProvider router={router} />
         </AuthContextProvider>
     </React.StrictMode>
 )

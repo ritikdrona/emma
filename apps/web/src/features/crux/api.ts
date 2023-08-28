@@ -1,10 +1,13 @@
+import { useContext } from 'react'
 import config from '../../config'
 import { useGet } from '../../lib/hooks/useGet'
 import { usePost } from '../../lib/hooks/usePost'
+import { AuthContext } from '../auth/contexts/AuthContext'
 
 const API_URL = config.API_URL + 'crux/'
 
 export const useGetNodesByParentId = async (parentId: string | null) => {
+    let { token } = useContext(AuthContext)
     let response = await useGet(API_URL + 'nodes/' + parentId)
     return response.nodes
 }

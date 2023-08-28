@@ -10,7 +10,7 @@ export type RequestOptions = {
 
 export const useFetch = async (
     url: string,
-    { method, body, headers }: RequestOptions
+    { method, body, headers }: RequestInit
 ) => {
     // let { token } = useContext(AuthContext)
     let response = await fetch(url, {

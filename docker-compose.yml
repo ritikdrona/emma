@@ -12,8 +12,8 @@ services:
     volumes:
       - /api/node_modules
       - ./apps/api:/api
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+      # environment:
+      # - CHOKIDAR_USEPOLLING=true
   web:
     build:
       context: ./apps/web

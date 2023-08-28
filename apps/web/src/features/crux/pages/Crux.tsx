@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useSessionStorage } from '../../../lib/hooks/useSessionStorage'
 import { useSessionStorageJSON } from '../../../lib/hooks/useSessionStorageJSON'
+import { AuthContext } from '../../auth/contexts/AuthContext'
 import { useGetNodesByParentId } from '../api'
 import CurrentNodePath from '../components/CurrentNodePath'
 import NodeDetail from '../components/NodeDetail'
 import { Node } from '../types/Node'
 
 const Crux = () => {
+    // let { token } = useContext(AuthContext)
+
     const { state: currentParentId, setState: setCurrentParentId } =
         useSessionStorage(null, 'currentParentId')
     const [nodes, setNodes] = useState<Node[]>([])
